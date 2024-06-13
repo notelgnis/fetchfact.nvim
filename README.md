@@ -7,7 +7,6 @@ A simple fact fetcher that fetches facts from the [Ninjas Facts API](https://api
 ```lua
 {
     'notelgnis/fetchfact.nvim',
-    dir = '~/Projects/src/personal/nvim-plugins/fetchfact.nvim',
     opts = {
         cache_file_path = '~/.cache/facts_cache.json',
         config_file_path = '~/.config/.facts_api_key',
