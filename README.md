@@ -20,6 +20,8 @@ A simple fact fetcher that fetches facts from the [Ninjas Facts API](https://api
 - config_file_path: Path to the file where the API key is stored
 - min_facts: Minimum number of facts to keep in the cache before fetching new ones
 - max_facts: Maximum number of facts to keep in the cache
+
+NOTE: Do not forget to get the API key from [Ninjas Facts API](https://api-ninjas.com/profile) and add it in the config file
 # Usage Example in Dashboard
 ```lua
 {
