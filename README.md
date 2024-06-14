@@ -1,4 +1,4 @@
-# Simple fact fetcher with cashing support
+# Simple fact fetcher with caching support
 A simple fact fetcher that fetches facts from the [Ninjas Facts API](https://api-ninjas.com/api/facts)
 <center><img src="https://github.com/notelgnis/fetchfact.nvim/assets/36000994/4d73fa46-60a0-4931-ac50-784858ef1b49" width=80% height=80%/></center>
 
