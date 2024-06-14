@@ -1,5 +1,3 @@
-local M = {}
-
 local job = require 'plenary.job'
 local url = 'https://api.api-ninjas.com/v1/facts'
 local facts = {}
@@ -48,20 +46,6 @@ local check_new_facts = function()
     end
 
     timer_max_count = timer_max_count - 1
-end
-
-M.setup = function(opts)
-    if opts then
-        for k, v in pairs(opts) do
-            if v ~= nil then
-                if k == 'cache_file_path' or k == 'config_file_path' then
-                    _opts[k] = vim.fn.expand(v)
-                else
-                    _opts[k] = v
-                end
-            end
-        end
-    end
 end
 
 local fetch_fact_async = function()
@@ -119,6 +103,22 @@ local fetch_fact = function()
         return r[1].fact
     else
         return 'Well, nobody’s perfect'
+    end
+end
+
+local M = {}
+
+M.setup = function(opts)
+    if opts then
+        for k, v in pairs(opts) do
+            if v ~= nil then
+                if k == 'cache_file_path' or k == 'config_file_path' then
+                    _opts[k] = vim.fn.expand(v)
+                else
+                    _opts[k] = v
+                end
+            end
+        end
     end
 end
 

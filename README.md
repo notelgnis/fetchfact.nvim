@@ -5,6 +5,34 @@ A simple fact fetcher that fetches facts from the [Ninjas Facts API](https://api
 # Installation
 ## Lazy
 ```lua
+
+-- somewhere in init.lua
+local split_long_string = function(str, max_length)
+    if #str <= max_length then
+        return { str }
+    end
+
+    local parts = {}
+    local start = 1
+    while start <= #str do
+        if #str - start + 1 <= max_length then
+            table.insert(parts, str:sub(start))
+            break
+        end
+
+        local last_space = str:sub(start, start + max_length - 1):find ' [^ ]*$'
+        local end_pos = start + max_length - 1
+        if last_space then
+            end_pos = start + last_space - 2
+        end
+
+        table.insert(parts, str:sub(start, end_pos))
+        start = end_pos + 1
+    end
+    return parts
+end
+
+-- Lazy
 {
     'notelgnis/fetchfact.nvim',
     opts = {
