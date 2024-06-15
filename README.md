@@ -23,45 +23,15 @@ A simple fact fetcher that fetches facts from the [Ninjas Facts API](https://api
 NOTE: Do not forget to get the API key from [Ninjas Facts API](https://api-ninjas.com/profile) and add it in the config file
 # Usage Example in Dashboard
 ```lua
--- somewhere in init.lua
-local split_long_string = function(str, max_length)
-    if #str <= max_length then
-        return { str }
-    end
-
-    local parts = {}
-    local start = 1
-    while start <= #str do
-        if #str - start + 1 <= max_length then
-            table.insert(parts, str:sub(start))
-            break
-        end
-
-        local last_space = str:sub(start, start + max_length - 1):find ' [^ ]*$'
-        local end_pos = start + max_length - 1
-        if last_space then
-            end_pos = start + last_space - 2
-        end
-
-        table.insert(parts, str:sub(start, end_pos))
-        start = end_pos + 1
-    end
-    return parts
-end
-
--- Dasgboard setup
 {
     'nvimdev/dashboard-nvim',
     event = 'VimEnter',
     config = function()
         require('dashboard').setup {
-            theme = 'hyper',
             config = {
                 footer = function()
-                    local fact = require('fetchfact').get_fact()
-                    local max_length = 90
-                    local split_fact = split_long_string(fact, max_length)
-                    return { '', unpack(split_fact) }
+                    local fact = require('fetchfact').get_split_fact(85)
+                    return { '', unpack(fact) }
                 end,
             },
         }
